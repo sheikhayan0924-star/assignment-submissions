@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Assignment Completion Center</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <!-- Welcome Page -->
+    <div id="welcomePage" class="page active">
+        <div class="container">
+            <div class="welcome-hero">
+                <div class="welcome-icon">📝</div>
+                <h1 class="welcome-title">Are You Worried About Lots of Assignments?</h1>
+                <div class="welcome-content">
+                    <p class="highlight-text">Don't have time to write all your college assignments?</p>
+                    <p class="main-message">Let's share with us and solve your problem!</p>
+                    <div class="service-box">
+                        <div class="service-icon">✍️</div>
+                        <p class="service-text">We will write your assignments <strong>(hardcopy)</strong> and deliver to your location</p>
+                    </div>
+                    <p class="cta-text">Join with us now!</p>
+                </div>
+                <button class="btn-primary btn-next" onclick="navigateTo('homePage')">Next →</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Home Page -->
+    <div id="homePage" class="page">
+        <div class="container">
+            <div class="hero">
+                <h1>Student Assignment Completion Center(Paid)</h1>
+                <p class="subtitle">Upload your college assignments and we will help you complete and organize them professionally.</p>
+                
+                <div class="features">
+                    <div class="feature-card">
+                        <div class="icon">⚡</div>
+                        <h3>Fast Assignment Completion</h3>
+                        <p>Quick turnaround time for all your assignments</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🔒</div>
+                        <h3>Safe Submission</h3>
+                        <p>Your data is secure and confidential</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">📚</div>
+                        <h3>Support for All Courses</h3>
+                        <p>We handle assignments from all subjects</p>
+                    </div>
+                </div>
+                
+                <button class="btn-primary" onclick="navigateTo('detailsPage')">Open</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Student Details Page -->
+    <div id="detailsPage" class="page">
+        <div class="container">
+            <button class="btn-back" onclick="navigateTo('homePage')">← Back</button>
+            <h2>Student Details</h2>
+            <form id="studentForm" class="form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" required placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="age">Age</label>
+                    <input type="number" id="age" required placeholder="Enter your age" min="1" max="100">
+                </div>
+                <div class="form-group">
+                    <label for="class">Class/year</label>
+                    <input type="text" id="class" required placeholder="Enter your class">
+                </div>
+                <div class="form-group">
+                    <label for="course">Course</label>
+                    <input type="text" id="course" required placeholder="Enter your course">
+                </div>
+                <button type="submit" class="btn-primary">Enter</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Assignment Upload Page -->
+    <div id="uploadPage" class="page">
+        <div class="container">
+            <button class="btn-back" onclick="navigateTo('detailsPage')">← Back</button>
+            <h2>Upload Assignment</h2>
+            
+            <div class="upload-section">
+                <div class="upload-box" id="uploadBox">
+                    <div class="upload-icon">📤</div>
+                    <p>Click or drag images here</p>
+                    <p class="upload-hint">Supports JPG, PNG</p>
+                    <input type="file" id="fileInput" accept="image/jpeg,image/png" multiple hidden>
+                </div>
+                
+                <div id="previewContainer" class="preview-container"></div>
+                
+                <button class="btn-primary" id="submitBtn" onclick="submitAssignment()">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="spinner"></div>
+        <p>Creating PDF from your images...</p>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <div class="success-icon">✓</div>
+            <h3>PDF Created Successfully!</h3>
+            <p>Your assignment PDF has been downloaded.</p>
+            <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">WhatsApp is opening - please attach the PDF file.</p>
+            <button class="btn-primary" onclick="resetForm()">Submit Another</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
